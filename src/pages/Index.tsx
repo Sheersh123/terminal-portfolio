@@ -1,16 +1,47 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import NavBar from "@/components/NavBar";
+import TerminalHeader from "@/components/TerminalHeader";
+import AboutSection from "@/components/AboutSection";
+import SkillsSection from "@/components/SkillsSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import EducationSection from "@/components/EducationSection";
+import InteractiveTerminal from "@/components/InteractiveTerminal";
+import Footer from "@/components/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background scanlines" id="top">
+      <NavBar />
+      <main className="max-w-4xl mx-auto px-4 pt-20 pb-12 space-y-8">
+        <TerminalHeader />
+
+        <section id="about">
+          <AboutSection />
+        </section>
+
+        <section id="skills">
+          <SkillsSection />
+        </section>
+
+        <section id="projects">
+          <ProjectsSection />
+        </section>
+
+        <section id="education">
+          <EducationSection />
+        </section>
+
+        <section id="terminal">
+          <div className="space-y-2">
+            <p className="text-terminal-gray text-xs font-mono">
+              💡 Try typing commands below — type <span className="text-primary">'help'</span> to get started
+            </p>
+            <InteractiveTerminal />
+          </div>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
