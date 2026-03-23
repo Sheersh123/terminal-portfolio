@@ -1,5 +1,31 @@
-import { useState, useRef, useEffect, KeyboardEvent } from "react";
+import { useState, useRef, useEffect, useCallback, KeyboardEvent } from "react";
 import { motion } from "framer-motion";
+
+const useTypingSound = () => {
+  const ctxRef = useRef<AudioContext | null>(null);
+
+  const play = useCallback(() => {
+    if (!ctxRef.current) {
+      ctxRef.current = new AudioContext();
+    }
+    const ctx = ctxRef.current;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    // Random frequency for mechanical key feel
+    osc.frequency.value = 1800 + Math.random() * 600;
+    osc.type = "square";
+    gain.gain.setValueAtTime(0.015, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.06);
+  }, []);
+
+  return play;
+};
 
 interface HistoryEntry {
   command: string;
