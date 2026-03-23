@@ -7,6 +7,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import EducationSection from "@/components/EducationSection";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import MatrixRain from "@/components/MatrixRain";
 
