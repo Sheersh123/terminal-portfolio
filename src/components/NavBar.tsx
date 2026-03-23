@@ -76,6 +76,16 @@ const NavBar = ({ activeTab, onTabChange }: NavBarProps) => {
           >
             [GitHub]
           </motion.a>
+          <motion.a
+            href="/Sheersh_Sinha.pdf"
+            download="Sheersh_Sinha_Resume.pdf"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-background bg-primary hover:bg-primary/80 rounded transition-all duration-200 ml-1"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Download size={12} />
+            Resume
+          </motion.a>
         </div>
 
         {/* Mobile toggle */}
