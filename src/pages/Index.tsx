@@ -8,6 +8,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import EducationSection from "@/components/EducationSection";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
 import Footer from "@/components/Footer";
+import MatrixRain from "@/components/MatrixRain";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
@@ -67,7 +68,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background scanlines" id="top">
+    <div className="min-h-screen bg-background scanlines relative" id="top">
+      <MatrixRain />
       <AnimatePresence mode="wait">
         {!booted ? (
           <motion.div
