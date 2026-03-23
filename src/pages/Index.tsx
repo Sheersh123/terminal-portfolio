@@ -57,6 +57,7 @@ const Index = () => {
       case "skills": return <SkillsSection />;
       case "projects": return <ProjectsSection />;
       case "education": return <EducationSection />;
+      case "contact": return <ContactSection />;
       case "terminal": return (
         <div className="space-y-2">
           <p className="text-terminal-gray text-xs font-mono">
