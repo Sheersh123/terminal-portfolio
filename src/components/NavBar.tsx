@@ -3,19 +3,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const sections = [
-  { id: "about", label: "~/about" },
-  { id: "skills", label: "~/skills" },
-  { id: "projects", label: "~/projects" },
-  { id: "education", label: "~/education" },
-  { id: "terminal", label: "~/terminal" },
+  { id: "about", label: "~/about", icon: "📋" },
+  { id: "skills", label: "~/skills", icon: "⚙️" },
+  { id: "projects", label: "~/projects", icon: "📁" },
+  { id: "education", label: "~/education", icon: "🎓" },
+  { id: "terminal", label: "~/terminal", icon: "💻" },
 ];
 
-const NavBar = () => {
+interface NavBarProps {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
+
+const NavBar = ({ activeTab, onTabChange }: NavBarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (id: string) => {
+    onTabChange(id);
     setMobileOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -26,40 +32,60 @@ const NavBar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border"
     >
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-        <button onClick={() => scrollTo("top")} className="text-primary text-glow font-bold text-sm font-mono">
+        <motion.button
+          onClick={() => handleNav("about")}
+          className="text-primary text-glow font-bold text-sm font-mono"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           sheersh@portfolio:~$
-        </button>
+        </motion.button>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-1">
           {sections.map((s) => (
-            <button
+            <motion.button
               key={s.id}
-              onClick={() => scrollTo(s.id)}
-              className="px-3 py-1.5 text-xs font-mono text-terminal-gray hover:text-primary hover:bg-muted 
-                rounded transition-all duration-200"
+              onClick={() => handleNav(s.id)}
+              className={`px-3 py-1.5 text-xs font-mono rounded transition-all duration-200 relative ${
+                activeTab === s.id
+                  ? "text-primary bg-muted"
+                  : "text-terminal-gray hover:text-primary hover:bg-muted"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {s.label}
-            </button>
+              {activeTab === s.id && (
+                <motion.div
+                  layoutId="navIndicator"
+                  className="absolute bottom-0 left-1 right-1 h-[2px] bg-primary rounded-full"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+            </motion.button>
           ))}
-          <a
+          <motion.a
             href="https://github.com/Sheersh123"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1.5 text-xs font-mono text-terminal-cyan hover:text-primary hover:bg-muted 
               rounded transition-all duration-200 ml-2"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             [GitHub]
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile toggle */}
-        <button
+        <motion.button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-primary p-1"
+          whileTap={{ scale: 0.9, rotate: 90 }}
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        </motion.button>
       </div>
 
       {/* Mobile menu */}
@@ -72,15 +98,22 @@ const NavBar = () => {
             className="md:hidden border-t border-border bg-background overflow-hidden"
           >
             <div className="px-4 py-2 space-y-1">
-              {sections.map((s) => (
-                <button
+              {sections.map((s, i) => (
+                <motion.button
                   key={s.id}
-                  onClick={() => scrollTo(s.id)}
-                  className="block w-full text-left px-3 py-2 text-sm font-mono text-terminal-gray 
-                    hover:text-primary hover:bg-muted rounded transition-colors"
+                  onClick={() => handleNav(s.id)}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.05 }}
+                  className={`block w-full text-left px-3 py-2 text-sm font-mono rounded transition-colors ${
+                    activeTab === s.id
+                      ? "text-primary bg-muted border-l-2 border-primary"
+                      : "text-terminal-gray hover:text-primary hover:bg-muted"
+                  }`}
                 >
+                  <span className="mr-2">{s.icon}</span>
                   {s.label}
-                </button>
+                </motion.button>
               ))}
             </div>
           </motion.div>
