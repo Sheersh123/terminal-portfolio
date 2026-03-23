@@ -16,6 +16,7 @@ const tabs = [
   { id: "skills", label: "skills", icon: "⚙️", cmd: "./list-skills.sh" },
   { id: "projects", label: "projects", icon: "📁", cmd: "ls ~/projects/" },
   { id: "education", label: "education", icon: "🎓", cmd: "cat ~/education/degree.json" },
+  { id: "contact", label: "contact", icon: "📬", cmd: "./send-message.sh --to sheersh" },
   { id: "terminal", label: "terminal", icon: "💻", cmd: "bash --interactive" },
 ];
 
