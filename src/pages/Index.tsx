@@ -34,10 +34,12 @@ const Index = () => {
 
   useEffect(() => {
     let i = 0;
+    const lines = [...bootSequence];
     const interval = setInterval(() => {
-      if (i < bootSequence.length) {
-        setBootLines((prev) => [...prev, bootSequence[i]]);
+      if (i < lines.length) {
+        const line = lines[i];
         i++;
+        setBootLines((prev) => [...prev, line]);
       } else {
         clearInterval(interval);
         setTimeout(() => setBooted(true), 400);
