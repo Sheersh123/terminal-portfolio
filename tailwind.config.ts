@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,15 +50,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        terminal: {
+          green: "hsl(var(--terminal-green))",
+          "green-dim": "hsl(var(--terminal-green-dim))",
+          cyan: "hsl(var(--terminal-cyan))",
+          yellow: "hsl(var(--terminal-yellow))",
+          red: "hsl(var(--terminal-red))",
+          magenta: "hsl(var(--terminal-magenta))",
+          blue: "hsl(var(--terminal-blue))",
+          white: "hsl(var(--terminal-white))",
+          gray: "hsl(var(--terminal-gray))",
+          bg: "hsl(var(--terminal-bg))",
+          "bg-light": "hsl(var(--terminal-bg-light))",
         },
       },
       borderRadius: {
@@ -65,20 +71,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
