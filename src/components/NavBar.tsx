@@ -7,6 +7,7 @@ const sections = [
   { id: "skills", label: "~/skills", icon: "⚙️" },
   { id: "projects", label: "~/projects", icon: "📁" },
   { id: "education", label: "~/education", icon: "🎓" },
+  { id: "contact", label: "~/contact", icon: "📬" },
   { id: "terminal", label: "~/terminal", icon: "💻" },
 ];
 
