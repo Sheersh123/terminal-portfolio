@@ -257,7 +257,10 @@ Type 'help' to see available commands.
             ref={inputRef}
             type="text"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              playType();
+            }}
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent text-primary outline-none border-none ml-1 font-mono text-sm min-w-[100px] caret-primary"
             autoFocus
