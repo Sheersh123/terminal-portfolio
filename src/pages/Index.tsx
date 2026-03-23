@@ -8,6 +8,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import EducationSection from "@/components/EducationSection";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
 import Footer from "@/components/Footer";
+import MatrixRain from "@/components/MatrixRain";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
