@@ -68,7 +68,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background scanlines" id="top">
+    <div className="min-h-screen bg-background scanlines relative" id="top">
+      <MatrixRain />
       <AnimatePresence mode="wait">
         {!booted ? (
           <motion.div
