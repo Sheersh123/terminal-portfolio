@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import useClickSound from "@/hooks/useClickSound";
 
 const sections = [
   { id: "about", label: "~/about", icon: "📋" },
@@ -19,10 +20,12 @@ interface NavBarProps {
 
 const NavBar = ({ activeTab, onTabChange }: NavBarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const playSound = useClickSound();
 
   const handleNav = (id: string) => {
     onTabChange(id);
     setMobileOpen(false);
+    playSound("click");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
