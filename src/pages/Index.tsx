@@ -13,6 +13,7 @@ import MatrixRain from "@/components/MatrixRain";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollReveal from "@/components/ScrollReveal";
 import useClickSound from "@/hooks/useClickSound";
+import BackToTop from "@/components/BackToTop";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
@@ -213,6 +214,7 @@ const Index = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <BackToTop />
     </div>
   );
 };
