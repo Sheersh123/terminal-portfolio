@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const sections = [
   { id: "about", label: "~/about", icon: "📋" },
@@ -77,10 +78,11 @@ const NavBar = ({ activeTab, onTabChange }: NavBarProps) => {
           >
             [GitHub]
           </motion.a>
+          <ThemeToggle />
           <motion.a
             href="/Sheersh_Sinha.pdf"
             download="Sheersh_Sinha_Resume.pdf"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-background bg-primary hover:bg-primary/80 rounded transition-all duration-200 ml-1"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-primary-foreground bg-primary hover:bg-primary/80 rounded transition-all duration-200 ml-1"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >

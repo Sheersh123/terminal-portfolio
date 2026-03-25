@@ -53,6 +53,50 @@
 
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
+
+  .light {
+    --background: 60 10% 96%;
+    --foreground: 160 80% 20%;
+
+    --card: 60 10% 93%;
+    --card-foreground: 160 80% 20%;
+
+    --popover: 60 10% 93%;
+    --popover-foreground: 160 80% 20%;
+
+    --primary: 150 80% 35%;
+    --primary-foreground: 60 10% 96%;
+
+    --secondary: 200 60% 40%;
+    --secondary-foreground: 60 10% 96%;
+
+    --muted: 60 10% 90%;
+    --muted-foreground: 160 30% 40%;
+
+    --accent: 45 80% 45%;
+    --accent-foreground: 60 10% 96%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 20% 75%;
+    --input: 150 20% 75%;
+    --ring: 150 80% 35%;
+
+    --terminal-green: 150 80% 35%;
+    --terminal-green-dim: 150 40% 50%;
+    --terminal-cyan: 180 60% 35%;
+    --terminal-yellow: 45 80% 40%;
+    --terminal-red: 0 70% 50%;
+    --terminal-magenta: 300 60% 45%;
+    --terminal-blue: 210 60% 45%;
+    --terminal-white: 0 0% 25%;
+    --terminal-gray: 0 0% 45%;
+    --terminal-bg: 60 10% 96%;
+    --terminal-bg-light: 60 10% 92%;
+    --terminal-glow: 150 80% 35%;
+    --terminal-scanline: hsla(150, 80%, 35%, 0.03);
+  }
 }
 
 @layer base {

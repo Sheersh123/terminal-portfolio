@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import TerminalHeader from "@/components/TerminalHeader";
 import AboutSection from "@/components/AboutSection";
@@ -10,6 +10,8 @@ import InteractiveTerminal from "@/components/InteractiveTerminal";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import MatrixRain from "@/components/MatrixRain";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
@@ -71,7 +73,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background scanlines relative" id="top">
+    <div className="min-h-screen bg-background scanlines relative cursor-none" id="top">
+      <CustomCursor />
       <MatrixRain />
       <AnimatePresence mode="wait">
         {!booted ? (
@@ -123,20 +126,29 @@ const Index = () => {
               <TerminalHeader />
 
               {/* Tab bar */}
-              <div className="flex flex-wrap gap-1 mb-2 border border-border rounded bg-muted p-2">
+              <div className="flex flex-wrap gap-1 mb-2 border border-border rounded bg-muted p-2 cursor-none group/tabs">
                 {tabs.map((tab) => (
                   <motion.button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`relative px-3 py-2 text-xs sm:text-sm font-mono rounded transition-all duration-200 flex items-center gap-1.5 ${
+                    className={`relative px-3 py-2 text-xs sm:text-sm font-mono rounded transition-all duration-200 flex items-center gap-1.5 cursor-none ${
                       activeTab === tab.id
                         ? "text-primary bg-background border border-primary/30 border-glow"
                         : "text-terminal-gray hover:text-terminal-white hover:bg-background/50"
                     }`}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
+                    whileHover={{
+                      scale: 1.06,
+                      textShadow: "0 0 8px hsl(120 100% 55% / 0.6)",
+                      transition: { duration: 0.2 },
+                    }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <span>{tab.icon}</span>
+                    <motion.span
+                      whileHover={{ rotate: [0, -15, 15, 0], scale: 1.3 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {tab.icon}
+                    </motion.span>
                     <span>{tab.label}</span>
                     {activeTab === tab.id && (
                       <motion.div
@@ -176,7 +188,9 @@ const Index = () => {
                   exit={{ opacity: 0, y: -15, scale: 0.98 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {renderSection()}
+                  <ScrollReveal>
+                    {renderSection()}
+                  </ScrollReveal>
                 </motion.div>
               </AnimatePresence>
             </main>
