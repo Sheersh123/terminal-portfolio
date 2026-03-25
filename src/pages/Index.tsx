@@ -134,7 +134,7 @@ const Index = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <NavBar activeTab={activeTab} onTabChange={setActiveTab} />
+            <NavBar activeTab={activeTab} onTabChange={handleTabChange} />
             <main className="max-w-4xl mx-auto px-4 pt-20 pb-12">
               <TerminalHeader />
 
@@ -143,12 +143,13 @@ const Index = () => {
                 {tabs.map((tab) => (
                   <motion.button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`relative px-3 py-2 text-xs sm:text-sm font-mono rounded transition-all duration-200 flex items-center gap-1.5 cursor-none ${
                       activeTab === tab.id
                         ? "text-primary bg-background border border-primary/30 border-glow"
                         : "text-terminal-gray hover:text-terminal-white hover:bg-background/50"
                     }`}
+                    onHoverStart={() => playSound("hover")}
                     whileHover={{
                       scale: 1.06,
                       textShadow: "0 0 8px hsl(120 100% 55% / 0.6)",
@@ -193,13 +194,14 @@ const Index = () => {
               </motion.div>
 
               {/* Active section */}
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction * 60, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, x: direction * -60, filter: "blur(6px)" }}
+                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <ScrollReveal>
                     {renderSection()}
