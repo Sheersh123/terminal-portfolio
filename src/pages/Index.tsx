@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import MatrixRain from "@/components/MatrixRain";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollReveal from "@/components/ScrollReveal";
+import useClickSound from "@/hooks/useClickSound";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
@@ -26,6 +27,18 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("about");
   const [booted, setBooted] = useState(false);
   const [bootLines, setBootLines] = useState<string[]>([]);
+  const [direction, setDirection] = useState(1);
+  const playSound = useClickSound();
+
+  const tabIds = tabs.map((t) => t.id);
+
+  const handleTabChange = (newTab: string) => {
+    const oldIndex = tabIds.indexOf(activeTab);
+    const newIndex = tabIds.indexOf(newTab);
+    setDirection(newIndex >= oldIndex ? 1 : -1);
+    setActiveTab(newTab);
+    playSound("whoosh");
+  };
 
   const bootSequence = [
     "[  0.000] Initializing portfolio kernel...",
