@@ -10,6 +10,8 @@ import InteractiveTerminal from "@/components/InteractiveTerminal";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import MatrixRain from "@/components/MatrixRain";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const tabs = [
   { id: "about", label: "about", icon: "📋", cmd: "cat ~/about/README.md" },
@@ -71,7 +73,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background scanlines relative" id="top">
+    <div className="min-h-screen bg-background scanlines relative cursor-none" id="top">
+      <CustomCursor />
       <MatrixRain />
       <AnimatePresence mode="wait">
         {!booted ? (
@@ -185,7 +188,9 @@ const Index = () => {
                   exit={{ opacity: 0, y: -15, scale: 0.98 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {renderSection()}
+                  <ScrollReveal>
+                    {renderSection()}
+                  </ScrollReveal>
                 </motion.div>
               </AnimatePresence>
             </main>
