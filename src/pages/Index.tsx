@@ -214,6 +214,7 @@ const Index = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <BackToTop />
     </div>
   );
 };
